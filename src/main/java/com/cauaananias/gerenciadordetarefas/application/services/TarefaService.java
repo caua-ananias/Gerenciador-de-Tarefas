@@ -2,6 +2,7 @@ package com.cauaananias.gerenciadordetarefas.application.services;
 
 import com.cauaananias.gerenciadordetarefas.domain.entities.Tarefa;
 import com.cauaananias.gerenciadordetarefas.domain.repositories.TarefaRepository;
+import com.cauaananias.gerenciadordetarefas.infra.exceptions.EntidadeNaoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class TarefaService {
     }
 
     public Tarefa findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+        return repository.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException("Tarefa não encontrada"));
     }
 
     public Tarefa insert(Tarefa tarefa) {
